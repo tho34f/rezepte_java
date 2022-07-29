@@ -1,0 +1,11 @@
+name;schwierigkeitsgrad;zerit;durchschnittsbewertung
+Apfelkuchen;normal;0;3
+Obstboden;normal;0;3
+Waffeln;normal;0;3
+Brühe;normal;0;3
+ErbsenSuppe;normal;0;3
+GyrosSuppe;normal;0;3
+IndianSummerSuppe;normal;0;3
+LinsenSuppe;normal;0;3
+MexicoSunriseSuppe;normal;0;3
+OmasKartoffelsalat;normal;0;3

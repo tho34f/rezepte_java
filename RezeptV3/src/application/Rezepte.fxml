@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?import javafx.scene.Scene?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+	fx:id="borderPane" fx:controller="frameworks.javafx.fxml.FXMLController">
+	<top>
+		<VBox fx:id="topBorder" spacing="10" alignment="CENTER">
+			<padding>
+	        	<Insets top="15" right="15" bottom="15" left="15" />
+	    	</padding>
+			<children>
+				<MenuBar fx:id="menurBar">
+					<menus>
+						<Menu text="File">
+							<items>
+								<MenuItem fx:id="accountInfo" text="Account-Informationen anzeigen!" onAction="#getAccountInformation"></MenuItem>
+								<MenuItem fx:id="closeApplication" text="Programm beenden" onAction="#actionBeforeClose"></MenuItem>
+							</items>
+						</Menu>
+						<Menu text="View"></Menu>
+						<Menu text="Edit"></Menu>
+					</menus>
+				</MenuBar>
+				<Label fx:id="welcome" text="Herzlich Wilkommen zu deiner Rezeptverwaltung">
+	            <font>
+	            	<Font name="cambria" size="24.0" />
+	            </font>
+        	</Label>
+			</children>
+		</VBox>
+    </top>
+    
+    <left>
+    
+    </left>
+    
+    <right>
+    
+    </right>
+    
+    <bottom>
+    
+    </bottom>
+</BorderPane>
+
