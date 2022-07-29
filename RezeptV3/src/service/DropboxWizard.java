@@ -26,7 +26,7 @@ import data.Rezept;
 
 public class DropboxWizard {
 	
-	private static final String ACCESS_TOKEN = "kU34bXLSJfMAAAAAAAAAARLRIV8PFo_6IvKhSysNlTXO9mSDln6fUL-4eseEKmML";
+	private static final String ACCESS_TOKEN = "XXX";
 	private static final String BACKSLASH = "/";
 	private String userPath;
 	
