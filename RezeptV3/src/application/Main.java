@@ -24,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import service.DropboxWizard;
+import service.LayoutService;
 import service.RezepteService;
 
 
@@ -39,8 +40,8 @@ public class Main extends Application {
 	private Rezept rezept = null;
 	private Category categoryChoose = null;
 	
-	private Label chooseCategory = new Label("Bitte wählen Sie eine Kategorie:");
-	private Label chooseRezept = new Label("Bitte wählen Sie ein Rezept:");
+	private Label chooseCategory = new Label("Bitte wÃ¤hlen Sie eine Kategorie:");
+	private Label chooseRezept = new Label("Bitte wÃ¤hlen Sie ein Rezept:");
 	private Label welcome = new Label("Herzlich Wilkommen zu deiner Rezeptverwaltung!");
 	private static Label rezeptRating = new Label("Bewertung:");
 	private static Label rezeptTime = new Label("Dauer:");
@@ -102,7 +103,7 @@ public class Main extends Application {
 					this.setRezept(rezeptFromList);
 					chooseRezept();
 				}
-			};
+			}
 		});
 		btnCreateCategory.setOnAction(e -> secondStage= service.startCreateCategory(rezeptImage, dbw));
 		buttonUpload.setOnAction(e -> secondStage= service.startCreateUpload(rezeptImage, dbw));
@@ -159,36 +160,36 @@ public class Main extends Application {
 	public void createMenuBar() {
 		menuBar.setPrefWidth(1000);
 		menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
-		accountInfo.setGraphic(service.createImageView(account));
-		closeApplication.setGraphic(service.createImageView(exit));
+		accountInfo.setGraphic(LayoutService.createImageView(account));
+		closeApplication.setGraphic(LayoutService.createImageView(exit));
 		menuFile.getItems().addAll(accountInfo, closeApplication);
 	}
 	
 	public void createLayout(BorderPane root) {
 		Insets padding = new Insets(15, 15, 15, 15);
 		
-		VBox topBorder = RezepteService.createVBOXWithAlignment(10, new Insets(0, 0,15, 0));
+		VBox topBorder = LayoutService.createVBOXWithAlignment(10, new Insets(0, 0,15, 0));
 		welcome.setFont(Font.font("cambria", 24));
 		topBorder.getChildren().addAll(menuBar, welcome);
 		
-		VBox leftBorder = service.createVBOX(10, padding);
+		VBox leftBorder = LayoutService.createVBOX(10, padding);
 		categorien.setPrefWidth(200);
-		HBox hLeftBorder = RezepteService.createHBOX(10);
+		HBox hLeftBorder = LayoutService.createHBOX(10);
 		findCategory.setPromptText("Kategoriename");
 		hLeftBorder.getChildren().addAll(findCategory,btnFindCategory);
 		leftBorder.getChildren().addAll(chooseCategory,categorien,hLeftBorder);
 		
-		VBox centerBorder = service.createVBOX(10, padding);
-		HBox hCenterBorder = RezepteService.createHBOX(10);
+		VBox centerBorder = LayoutService.createVBOX(10, padding);
+		HBox hCenterBorder = LayoutService.createHBOX(10);
 		findRezept.setPromptText("Rezeptname");
 		hCenterBorder.getChildren().addAll(findRezept,btnFindRezept);
 		centerBorder.getChildren().addAll(chooseRezept, rezepte, hCenterBorder);
 		
-		HBox borderBottom = service.createHBOX(10, padding);
+		HBox borderBottom = LayoutService.createHBOX(10, padding);
 		borderBottom.getChildren().addAll(moreFunczions, btnCreateCategory,buttonUpload);
 		
-		VBox rightBorder = service.createVBOX(10, padding);
-		HBox lineButton = service.createHBOX(10, padding);
+		VBox rightBorder = LayoutService.createVBOX(10, padding);
+		HBox lineButton = LayoutService.createHBOX(10, padding);
 		rightBorder.setAlignment(Pos.CENTER);
 		buttonDownload.setDisable(true);
 		btnEvaluate.setDisable(true);
