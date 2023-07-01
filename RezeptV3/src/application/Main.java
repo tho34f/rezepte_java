@@ -17,8 +17,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import layout.LayoutElements;
+import layout.LayoutService;
+import service.DierkesLooger;
 import service.DropboxWizard;
-import service.LayoutService;
 import service.RezepteService;
 
 
@@ -33,6 +34,8 @@ public class Main extends Application {
 	private ListView<Rezept> rezepte = new ListView<>();
 	private Rezept rezept = null;
 	private Category categoryChoose = null;
+	
+	private static final DierkesLooger LOOGER = new DierkesLooger();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {

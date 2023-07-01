@@ -18,7 +18,7 @@ import data.Rezept;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import service.LayoutService;
+import layout.LayoutService;
 import service.RezepteService;
 
 public class ReadWriteTextFile {

@@ -12,7 +12,7 @@ import java.util.List;
 import data.Konstanten;
 import data.Rezept;
 import javafx.scene.control.Alert.AlertType;
-import service.LayoutService;
+import layout.LayoutService;
 import service.RezepteService;
 
 public class RezeptQuerries {

@@ -1,4 +1,4 @@
-package service;
+package layout;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
