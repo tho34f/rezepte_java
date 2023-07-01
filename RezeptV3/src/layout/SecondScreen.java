@@ -1,4 +1,4 @@
-package application;
+package layout;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import service.LayoutService;
 import service.RezepteService;
 
 public class SecondScreen {
@@ -31,7 +32,7 @@ public class SecondScreen {
 		this.textField = new TextField();
 		this.textField.setPromptText(promptText);
 		this.confirm = new Button(buttonText);
-		this.borderCenter = RezepteService.createVBOXWithAlignment(10, new Insets(15, 15, 15, 15));
+		this.borderCenter = LayoutService.createVBOXWithAlignment(10, new Insets(15, 15, 15, 15));
 		this.borderCenter.getChildren().addAll(this.label, this.textField, this.confirm);
 		this.pane.setCenter(borderCenter);
 	}
@@ -47,8 +48,8 @@ public class SecondScreen {
 		this.categorien = new ComboBox<>();
 		this.categorien.getItems().addAll(categorieList);
 		this.chooseBtn = new Button(buttonTextOne);
-		this.borderCenter = RezepteService.createVBOXWithAlignment(10, new Insets(15, 15, 15, 15));
-		this.btnButton = RezepteService.createHBOX(10);
+		this.borderCenter = LayoutService.createVBOXWithAlignment(10, new Insets(15, 15, 15, 15));
+		this.btnButton = LayoutService.createHBOX(10);
 		this.btnButton.getChildren().addAll(chooseBtn, confirm);
 		this.borderCenter.getChildren().addAll(this.secondLabel, this.getCategorien(), this.label, this.textField, this.btnButton);
 		this.pane.setCenter(borderCenter);

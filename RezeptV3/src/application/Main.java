@@ -10,19 +10,13 @@ import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import layout.LayoutElements;
 import service.DropboxWizard;
 import service.LayoutService;
 import service.RezepteService;
@@ -39,36 +33,6 @@ public class Main extends Application {
 	private ListView<Rezept> rezepte = new ListView<>();
 	private Rezept rezept = null;
 	private Category categoryChoose = null;
-	
-	private Label chooseCategory = new Label("Bitte wählen Sie eine Kategorie:");
-	private Label chooseRezept = new Label("Bitte wählen Sie ein Rezept:");
-	private Label welcome = new Label("Herzlich Wilkommen zu deiner Rezeptverwaltung!");
-	private static Label rezeptRating = new Label("Bewertung:");
-	private static Label rezeptTime = new Label("Dauer:");
-	private static Label rezeptDifficultyLevel = new Label("Schwirigkeitsgrad:");
-	private static Label rezeptName = new Label("Rezept-Name:");
-	private Label moreFunczions = new Label("Weitere Funktionen:");
-	private TextField findCategory = new TextField();
-	private TextField findRezept = new TextField();
-	
-	private Button buttonUpload = new Button("Rezept hochladen");
-	private static Button buttonDownload = new Button("Rezept downloaden");
-	private static Button btnEvaluate = new Button("Rezept Bewerten");
-	private Button btnCreateCategory = new Button("Kategorie erstellen");
-	private Button btnFindCategory = new Button("Kategorie suchen!");
-	private Button btnFindRezept = new Button("Rezept suchen!");
-	
-	private Image account = new Image("profilePicture.png");
-	private Image rezeptImage = new Image("rezepte.jpg");
-	private Image exit = new Image("exit.png");
-	
-	private Menu menuView = new Menu("View");
-	private Menu menuEdit = new Menu("Edit");
-	private MenuItem accountInfo = new MenuItem("Account-Informationen anzeigen!");
-	private MenuItem closeApplication = new MenuItem("Programm beenden");
-	private Menu menuFile = new Menu("File");
-	private MenuBar menuBar = new MenuBar();
-	private Stage secondStage;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -91,13 +55,13 @@ public class Main extends Application {
 			if(getRezept() != null) {
 				chooseRezept();
 			} else {
-				btnEvaluate.setDisable(true);
-				buttonDownload.setDisable(true);
+				LayoutElements.btnEvaluate.setDisable(true);
+				LayoutElements.buttonDownload.setDisable(true);
 			}
 		});
 		
-		btnEvaluate.setOnAction(e -> {
-			secondStage = service.startEvaluation(rezeptImage, getRezept());
+		LayoutElements.btnEvaluate.setOnAction(e -> {
+			LayoutElements.secondStage = service.startEvaluation(LayoutElements.rezeptImage, getRezept());
 			for(Rezept rezeptFromList : service.getRezepteList()) {
 				if(rezeptFromList.getTitle().equals(getRezept().getTitle())){
 					this.setRezept(rezeptFromList);
@@ -105,12 +69,12 @@ public class Main extends Application {
 				}
 			}
 		});
-		btnCreateCategory.setOnAction(e -> secondStage= service.startCreateCategory(rezeptImage, dbw));
-		buttonUpload.setOnAction(e -> secondStage= service.startCreateUpload(rezeptImage, dbw));
-		accountInfo.setOnAction(e -> service.getAccountInformation(dbw));
-		buttonDownload.setOnAction(e -> service.downloadRezept(categoryChoose.getName(), getRezept().getTitle(), dbw));
-		btnFindCategory.setOnAction(e -> {
-			String eingabe = findCategory.getText();
+		LayoutElements.btnCreateCategory.setOnAction(e -> LayoutElements.secondStage= service.startCreateCategory(LayoutElements.rezeptImage, dbw));
+		LayoutElements.buttonUpload.setOnAction(e -> LayoutElements.secondStage= service.startCreateUpload(LayoutElements.rezeptImage, dbw));
+		LayoutElements.accountInfo.setOnAction(e -> service.getAccountInformation(dbw));
+		LayoutElements.buttonDownload.setOnAction(e -> service.downloadRezept(categoryChoose.getName(), getRezept().getTitle(), dbw));
+		LayoutElements.btnFindCategory.setOnAction(e -> {
+			String eingabe = LayoutElements.findCategory.getText();
 			if(eingabe != null && !eingabe.isEmpty()) {
 				for(Category category : service.getCategorieList()) {
 					if(eingabe.equals(category.getName())) {
@@ -121,10 +85,10 @@ public class Main extends Application {
 					}
 				}
 			}
-			findCategory.clear();
+			LayoutElements.findCategory.clear();
 		});
-		btnFindRezept.setOnAction(e -> {
-			String eingabe = findRezept.getText();
+		LayoutElements.btnFindRezept.setOnAction(e -> {
+			String eingabe = LayoutElements.findRezept.getText();
 			if(eingabe != null && !eingabe.isEmpty()) {
 				for(Rezept re : getRezepteList()) {
 					if(eingabe.equals(re.getTitle())) {
@@ -134,22 +98,21 @@ public class Main extends Application {
 					}
 				}
 			}
-			findRezept.clear();
+			LayoutElements.findRezept.clear();
 		});
 		
-		closeApplication.setOnAction(e -> {
-			service.actionBeforeClose(dbw, secondStage);
+		LayoutElements.closeApplication.setOnAction(e -> {
+			service.actionBeforeClose(dbw, LayoutElements.secondStage);
 			System.exit(0);
 		});
 		
-		//Parent root = FXMLLoader.load(getClass().getResource("Rezepte.fxml"));
 		Scene scene = new Scene(root,1000,600);
 		
-		primaryStage.getIcons().add(rezeptImage);
+		primaryStage.getIcons().add(LayoutElements.rezeptImage);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Rezeptverwaltung");
 		primaryStage.show();
-		primaryStage.setOnCloseRequest(e -> service.actionBeforeClose(dbw, secondStage));
+		primaryStage.setOnCloseRequest(e -> service.actionBeforeClose(dbw, LayoutElements.secondStage));
 
 	}
 	
@@ -158,43 +121,43 @@ public class Main extends Application {
 	}
 	
 	public void createMenuBar() {
-		menuBar.setPrefWidth(1000);
-		menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
-		accountInfo.setGraphic(LayoutService.createImageView(account));
-		closeApplication.setGraphic(LayoutService.createImageView(exit));
-		menuFile.getItems().addAll(accountInfo, closeApplication);
+		LayoutElements.menuBar.setPrefWidth(1000);
+		LayoutElements.menuBar.getMenus().addAll(LayoutElements.menuFile, LayoutElements.menuEdit, LayoutElements.menuView);
+		LayoutElements.accountInfo.setGraphic(LayoutService.createImageView(LayoutElements.account));
+		LayoutElements.closeApplication.setGraphic(LayoutService.createImageView(LayoutElements.exit));
+		LayoutElements.menuFile.getItems().addAll(LayoutElements.accountInfo, LayoutElements.closeApplication);
 	}
 	
 	public void createLayout(BorderPane root) {
 		Insets padding = new Insets(15, 15, 15, 15);
 		
 		VBox topBorder = LayoutService.createVBOXWithAlignment(10, new Insets(0, 0,15, 0));
-		welcome.setFont(Font.font("cambria", 24));
-		topBorder.getChildren().addAll(menuBar, welcome);
+		LayoutElements.welcome.setFont(Font.font("cambria", 24));
+		topBorder.getChildren().addAll(LayoutElements.menuBar, LayoutElements.welcome);
 		
 		VBox leftBorder = LayoutService.createVBOX(10, padding);
 		categorien.setPrefWidth(200);
 		HBox hLeftBorder = LayoutService.createHBOX(10);
-		findCategory.setPromptText("Kategoriename");
-		hLeftBorder.getChildren().addAll(findCategory,btnFindCategory);
-		leftBorder.getChildren().addAll(chooseCategory,categorien,hLeftBorder);
+		LayoutElements.findCategory.setPromptText("Kategoriename");
+		hLeftBorder.getChildren().addAll(LayoutElements.findCategory,LayoutElements.btnFindCategory);
+		leftBorder.getChildren().addAll(LayoutElements.chooseCategory,categorien,hLeftBorder);
 		
 		VBox centerBorder = LayoutService.createVBOX(10, padding);
 		HBox hCenterBorder = LayoutService.createHBOX(10);
-		findRezept.setPromptText("Rezeptname");
-		hCenterBorder.getChildren().addAll(findRezept,btnFindRezept);
-		centerBorder.getChildren().addAll(chooseRezept, rezepte, hCenterBorder);
+		LayoutElements.findRezept.setPromptText("Rezeptname");
+		hCenterBorder.getChildren().addAll(LayoutElements.findRezept,LayoutElements.btnFindRezept);
+		centerBorder.getChildren().addAll(LayoutElements.chooseRezept, rezepte, hCenterBorder);
 		
 		HBox borderBottom = LayoutService.createHBOX(10, padding);
-		borderBottom.getChildren().addAll(moreFunczions, btnCreateCategory,buttonUpload);
+		borderBottom.getChildren().addAll(LayoutElements.moreFunczions, LayoutElements.btnCreateCategory,LayoutElements.buttonUpload);
 		
 		VBox rightBorder = LayoutService.createVBOX(10, padding);
 		HBox lineButton = LayoutService.createHBOX(10, padding);
 		rightBorder.setAlignment(Pos.CENTER);
-		buttonDownload.setDisable(true);
-		btnEvaluate.setDisable(true);
-		lineButton.getChildren().addAll(buttonDownload,btnEvaluate );
-		rightBorder.getChildren().addAll(rezeptName, rezeptRating, rezeptTime, rezeptDifficultyLevel, lineButton);
+		LayoutElements.buttonDownload.setDisable(true);
+		LayoutElements.btnEvaluate.setDisable(true);
+		lineButton.getChildren().addAll(LayoutElements.buttonDownload,LayoutElements.btnEvaluate );
+		rightBorder.getChildren().addAll(LayoutElements.rezeptName, LayoutElements.rezeptRating, LayoutElements.rezeptTime, LayoutElements.rezeptDifficultyLevel, lineButton);
 		
 		root.setLeft(leftBorder);
 		root.setCenter(centerBorder);
@@ -204,22 +167,22 @@ public class Main extends Application {
 	}
 	
 	public void chooseRezept() {
-		rezeptName.setText("Name: " + getRezept().getTitle());
-		rezeptRating.setText("Bewertung: " + getRezept().getRating());
+		LayoutElements.rezeptName.setText("Name: " + getRezept().getTitle());
+		LayoutElements.rezeptRating.setText("Bewertung: " + getRezept().getRating());
 		if(getRezept().getDifficultyLevel() != null) {
-			rezeptDifficultyLevel.setText("Schwirigkeitsgrad: " + getRezept().getDifficultyLevel());
+			LayoutElements.rezeptDifficultyLevel.setText("Schwirigkeitsgrad: " + getRezept().getDifficultyLevel());
 		} else {
-			rezeptDifficultyLevel.setText("Schwirigkeitsgrad: -");
+			LayoutElements.rezeptDifficultyLevel.setText("Schwirigkeitsgrad: -");
 		}
 		
 		if(getRezept().getTime() != 0) {
-			rezeptTime.setText("Dauer: " + getRezept().getTime() + " Minuten");
+			LayoutElements.rezeptTime.setText("Dauer: " + getRezept().getTime() + " Minuten");
 		} else {
-			rezeptTime.setText("Dauer: -");
+			LayoutElements.rezeptTime.setText("Dauer: -");
 		}
 		
-		btnEvaluate.setDisable(false);
-		buttonDownload.setDisable(false);
+		LayoutElements.btnEvaluate.setDisable(false);
+		LayoutElements.buttonDownload.setDisable(false);
 	}
 
 	public List<Rezept> getRezepteList() {

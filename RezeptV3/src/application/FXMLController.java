@@ -39,8 +39,6 @@ public class FXMLController implements Initializable {
 			categorieList = dbw.listDropboxFolders("");
 		} catch (DbxException e) {
 			categorien.setItems(null);
-			service.createAlert(AlertType.ERROR, service.getERRORDIALOG(), service.getLOOKERROR(),
-					"Beim Erstellen der Kategorieliste ist etwas schiefgelaufen! Versuchen Sie es noch einmal!");
 		}
     	
     	action.getItems().addAll("Rezept hochladen", "Rezept downloaden", "Rezept bewerten", "Neue Kategorie erstellen");
