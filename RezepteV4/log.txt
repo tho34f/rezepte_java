@@ -1,0 +1,11 @@
+Sat Feb 17 09:11:41 CET 2024: com.thorben.application.service.RezepteService: Start fillCategory()
+Sat Feb 17 09:11:43 CET 2024: com.thorben.application.service.LayoutService: LayoutService: start createLayout()
+Sat Feb 17 09:11:43 CET 2024: com.thorben.application.service.LayoutService: LayoutService: start setMainSettingsPrimaryStage()
+Sat Feb 17 09:12:42 CET 2024: com.thorben.application.service.ButtonService: Start Close Request
+Sat Feb 17 09:16:29 CET 2024: com.thorben.application.service.RezepteService: Start fillCategory()
+Sat Feb 17 09:16:30 CET 2024: com.thorben.application.service.LayoutService: LayoutService: start createLayout()
+Sat Feb 17 09:16:30 CET 2024: com.thorben.application.service.LayoutService: LayoutService: start setMainSettingsPrimaryStage()
+Sat Feb 17 09:16:37 CET 2024: com.thorben.application.RezepteV4: Get Account Information
+Sat Feb 17 09:16:41 CET 2024: com.thorben.application.service.ButtonService: Start select Category
+Sat Feb 17 09:16:41 CET 2024: com.thorben.application.service.RezepteService: Start fillRezepte()
+Sat Feb 17 09:16:46 CET 2024: com.thorben.application.service.ButtonService: Start Close Request
